@@ -45,7 +45,7 @@ def intersecting(line_start, line_end, circle_center, circle_radius):
 
 def intersecting2(start_point, end_point, center, circle_radius):
     a = end_point[0] ** 2 + end_point[1] ** 2
-    b = 2 * (end_point[0] * (start_point[0] - center[0]) + end_point[1] * (start_point[1] - center[1]))
+    b = 2 * (end_point[0] * (start_point[0] - center[0]) +  [1] * (start_point[1] - center[1]))
     c = (start_point[0] - center[0]) ** 2 + (start_point[1] - center[1]) ** 2 - circle_radius ** 2
 
     # Calculate the discriminant

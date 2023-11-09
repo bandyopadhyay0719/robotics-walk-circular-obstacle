@@ -11,15 +11,29 @@ import sys
 
 Circle.circles = []
 
-start = np.array((1,1))
-end = np.array((17,12))
+start = np.array((7,7))
+end = np.array((1,1))
 
-sys.setrecursionlimit(3000)
+sys.setrecursionlimit(4000)
 
 i = 0
-while i<30:
-    x = random.randint(start[0], end[0])
-    y = random.randint(start[1], end[1])
+while i< 10:
+    if(start[0]>end[0]):
+        xsmall_end = end[0]
+        xbig_end = start[0]
+    else:
+        xsmall_end = start[0]
+        xbig_end = end[0]
+
+    if(start[1]>end[1]):
+        ysmall_end = end[1]
+        ybig_end = start[1]
+    else:
+        ysmall_end = start[1]
+        ybig_end = end[1]
+
+    x = random.randint(xsmall_end, xbig_end)
+    y = random.randint(ysmall_end, ybig_end)
     r = random.uniform(.5,1.2)
     if i==0:
         Circle.circles.append(Circle((x,y), r))

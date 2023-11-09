@@ -4,11 +4,11 @@ from intersect import intersecting
 from execute import walk
 from intersect import is_point_within_circle
 
-start = np.array((2, 2))
-end = np.array((7,7))
+start = np.array((7,7))
+end = np.array((2,7))
 
 circle_radius = 1
-circle_center = (4,4)
+circle_center = (4,7)
 
 
 
