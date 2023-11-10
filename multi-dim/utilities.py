@@ -59,7 +59,7 @@ def plot_point(point, plt, axes, color_of_point = "lightseagreen", point_size = 
                  markersize=point_size)
 
     elif len(point) == 3:
-        axes.scatter(point[0], point[1], point[2], color=color_of_point, marker='o', linestyle='dashed', linewidth=2)
+        axes.scatter(point[0], point[1], point[2], color=color_of_point, marker='*', linestyle='dashed', linewidth=2, s=point_size)
 
 
 def intersection_points(start_point, end_point, center, radius):
