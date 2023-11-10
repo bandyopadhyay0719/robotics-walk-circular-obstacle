@@ -10,7 +10,7 @@ start = np.array((1, 1))
 end = np.array((7, 7))
 
 
-def create_circles(start_in, end_in, min_radius, max_radius):
+def create_circles_random(start_in, end_in, min_radius, max_radius):
     i = 0
     if start_in[0] > end_in[0]:
         xsmall_end = end_in[0]
@@ -72,7 +72,7 @@ def dimensions(start_point, end_point, r):
         plt.ylim(end_point[1] - .1 - r, start_point[1] + .1 + r)
 
 
-circles_list = create_circles(start, end, 0.3, 3)
+circles_list = create_circles_random(start, end, 0.3, 3)
 
 draw_circles(circles_list)
 

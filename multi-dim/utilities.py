@@ -53,13 +53,13 @@ def plot_circle_or_sphere(center, radius, start_point, end_point, plt, axes):
         axes.set_zlabel('Z')
 
 
-def plot_point(point, plt, axes):
+def plot_point(point, plt, axes, color_of_point = "lightseagreen", point_size = 1):
     if len(point) == 2:
-        plt.plot(point[0], point[1], color='pink', marker='o', linestyle='dashed', linewidth=2,
-                 markersize=1)
+        plt.plot(point[0], point[1], color=color_of_point, marker='o', linestyle='dashed', linewidth=2,
+                 markersize=point_size)
 
     elif len(point) == 3:
-        axes.scatter(point[0], point[1], point[2], color='pink', marker='o', linestyle='dashed', linewidth=2)
+        axes.scatter(point[0], point[1], point[2], color=color_of_point, marker='o', linestyle='dashed', linewidth=2)
 
 
 def intersection_points(start_point, end_point, center, radius):
@@ -98,12 +98,11 @@ def is_next_step_within_object(in_point, in_center, in_radius):
 
 
 def distance_between_points(v1, v2):
-    print('v1', v1)
-    print('v2', v2)
+
     if len(v1) != len(v2):
         raise ValueError("Vectors must have the same dimensionality")
     squared_diff = sum((x - y) ** 2 for x, y in zip(v1, v2))
-    print('squared_diff', squared_diff)
+
     return math.sqrt(squared_diff)
 
 

@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from walk.Circles import Circle
 
-
 def plot_circle(center_in, radius_in):
     theta = np.linspace(0, 2 * np.pi, 100)
     x = center_in[0] + radius_in * np.cos(theta)
@@ -11,6 +10,9 @@ def plot_circle(center_in, radius_in):
 
 
 def create_circles(plt, axes):
+    # if is_random:
+    #     Circle.circles = create_circles_random(start, end, min_radius= 0.3, max_radius= 2)
+
     circles = [
         ((2, 2), 1),
         ((6, 2), 0.8),
@@ -19,15 +21,7 @@ def create_circles(plt, axes):
         ((2, 7), 0.7),
         ((4.5, 8.5), 0.7)
     ]
-    # plt.figure(figsize=(8, 8))
-    # for center, radius in circles:
-    #     plot_circle(center, radius)
-    #
-    # plt.gca().set_aspect('equal', adjustable='box')
-    # plt.xlim(0, 10)
-    # plt.ylim(0, 10)
-    # plt.xlabel('X')
-    # plt.ylabel('Y')
+
 
     for center, radius in circles:
 

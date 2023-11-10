@@ -44,7 +44,7 @@ def walk_multiple(start_point, end_point, object_list, h, alpha, axes):
                 plot_point(next_start, plt, axes)
     else:
         if np.linalg.norm(next_start - end_point) > (alpha * h):
-            plot_point(next_start, plt, axes)
+            plot_point(next_start, plt, axes, "steelblue")
     return next_start
 
 
@@ -56,8 +56,8 @@ def run_robot(start_point, end_point):
         ax = fig.add_subplot(111, projection='3d')
 
     create_environment(start_point, plt, ax)
-    plot_point(start_point, plt, ax)
-    plot_point(end_point, plt, ax)
+    plot_point(start_point, plt, ax, "red", 5)
+    plot_point(end_point, plt, ax, "red", 5)
 
 
 
@@ -90,8 +90,8 @@ def run_robot(start_point, end_point):
     # print("complete")
 
 
-end_vector = np.array((2,6,2))
-start_vector = np.array((2, 2, 1))
+end_vector = np.array((1,1,1))
+start_vector = np.array((6,6,6))
 
 # circle_radius_value = 1
 # circle_center_value = (4,4)
