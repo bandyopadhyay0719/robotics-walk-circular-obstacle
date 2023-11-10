@@ -84,12 +84,21 @@ def intersecting2(start_point, end_point, center, circle_radius):
 #             math.sqrt(a * a + b * b))
 
 def is_point_within_circle(p, center, radius):
-    x = p[0]
-    y = p[1]
+    if len(p) == 2:
+        x = p[0]
+        y = p[1]
 
-    if ((x - center[0]) ** 2 + (y - center[1]) ** 2) < radius ** 2:
-        return True
-    return False
+        if ((x - center[0]) ** 2 + (y - center[1]) ** 2) < radius ** 2:
+            return True
+        return False
+    if len(p) == 3:
+        x = p[0]
+        y = p[1]
+        z = p[2]
+
+        if ((x - center[0]) ** 2 + (y - center[1]) ** 2 + (z - center[2]) ** 2) < radius ** 2:
+            return True
+        return False
 
 
 def distance(v1, v2):

@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from intersect import intersecting
-from Circles import Circle
-from intersect import distance
+from walk.intersect import intersecting
+from walk.Circles import Circle
+from walk.intersect import distance
 from intersect import is_point_within_circle
 from calculations import normal
 import random
@@ -11,21 +11,21 @@ import sys
 
 Circle.circles = []
 
-start = np.array((7,7))
-end = np.array((1,1))
+start = np.array((7, 7))
+end = np.array((1, 1))
 
 sys.setrecursionlimit(4000)
 
 i = 0
-while i< 10:
-    if(start[0]>end[0]):
+while i < 10:
+    if (start[0] > end[0]):
         xsmall_end = end[0]
         xbig_end = start[0]
     else:
         xsmall_end = start[0]
         xbig_end = end[0]
 
-    if(start[1]>end[1]):
+    if (start[1] > end[1]):
         ysmall_end = end[1]
         ybig_end = start[1]
     else:
@@ -34,15 +34,15 @@ while i< 10:
 
     x = random.randint(xsmall_end, xbig_end)
     y = random.randint(ysmall_end, ybig_end)
-    r = random.uniform(.5,1.2)
-    if i==0:
-        Circle.circles.append(Circle((x,y), r))
-        i+=1
+    r = random.uniform(.5, 1.2)
+    if i == 0:
+        Circle.circles.append(Circle((x, y), r))
+        i += 1
     else:
-        if not is_point_within_circle(start, (x,y), r) and not is_point_within_circle(end, (x,y), r):
-            if not Circle.if_intersecting((x,y), r, Circle.circles):
-                Circle.circles.append(Circle((x,y), r))
-                i+=1
+        if not is_point_within_circle(start, (x, y), r) and not is_point_within_circle(end, (x, y), r):
+            if not Circle.if_intersecting((x, y), r, Circle.circles):
+                Circle.circles.append(Circle((x, y), r))
+                i += 1
 
 # for i in range(5):
 #     x = random.randint(start[0], end[0])
@@ -58,6 +58,7 @@ for c in Circle.circles:
     radius = c.radius
     print(radius)
 
+
 def next_intersection(start, end, circle_list):
     intersection = (200000000, 20000000000)
     circle = 0
@@ -68,8 +69,8 @@ def next_intersection(start, end, circle_list):
             temp_intersection = intersecting(start, end, c.center, c.radius)
             if temp_intersection is not None:
                 temp_distance = distance(start, temp_intersection)
-                if(temp_distance<min_distance):
-                    intersection=temp_intersection
+                if (temp_distance < min_distance):
+                    intersection = temp_intersection
                     circle = i
         return circle_list[circle]
 
@@ -114,8 +115,9 @@ def walk_multiple(start, end, circle_list, h, alpha):
             print("complete")
 
 
-h=.1
+h = .1
 alpha = .1
+
 
 def run_robot_multiple(start_point, end_point, circle_list):
     for circle in circle_list:
@@ -135,7 +137,6 @@ def run_robot_multiple(start_point, end_point, circle_list):
     #     print("End point is within circle, can't proceed")
     #     return
 
-
     walk_multiple(start_point, end_point, circle_list, h, alpha)
     plt.gca().set_aspect("equal")
 
@@ -149,7 +150,7 @@ def run_robot_multiple(start_point, end_point, circle_list):
     else:
         plt.ylim(end_point[1] - 1, start_point[1] + 1)
 
-run_robot_multiple(start, end, Circle.circles)
 
+run_robot_multiple(start, end, Circle.circles)
 
 plt.show()

@@ -1,8 +1,26 @@
 import numpy as np
 import math
+from environment.non_overlapping_fixed_spheres import *
+from environment.non_overlapping_fixed_circles import *
+from walk.Circles import Circle
+from environment.Spheres import Sphere
 
-h =  1  # increment
+h = .1  # increment
 alpha = .1  # step length
+
+
+def create_environment(start_point, plt_in, axes):
+    if len(start_point) == 2:
+        create_circles(plt_in, axes)
+    else:
+        create_spheres(axes)
+
+
+def is_start_in_object(start, object_list):
+    for object in object_list:
+        if is_point_within_object(start, object.center, object.radius):
+            return True
+    return False
 
 
 def plot_circle_or_sphere(center, radius, start_point, end_point, plt, axes):
@@ -73,10 +91,19 @@ def is_point_within_object(in_point, in_center, in_radius):
     return distance <= in_radius
 
 
+def is_next_step_within_object(in_point, in_center, in_radius):
+    next_step = in_point + find_unit_vector(in_point) * h * alpha
+    distance = math.sqrt(sum((p - c) ** 2 for p, c in zip(next_step, in_center)))
+    return distance <= in_radius
+
+
 def distance_between_points(v1, v2):
+    print('v1', v1)
+    print('v2', v2)
     if len(v1) != len(v2):
         raise ValueError("Vectors must have the same dimensionality")
     squared_diff = sum((x - y) ** 2 for x, y in zip(v1, v2))
+    print('squared_diff', squared_diff)
     return math.sqrt(squared_diff)
 
 
@@ -102,15 +129,19 @@ def find_normal_vector(start, end, circle_center, circle_radius):
 
     direct_normal_dot_product = dot_product(direction_vector, normal_vector)
 
-
     if direct_normal_dot_product < 0:
         normal_vector = opposite_direction(normal_vector)
-
 
     vector_magnitude = np.linalg.norm(normal_vector)
 
     unit_vector = (normal_vector / vector_magnitude)
 
+    return unit_vector
+
+
+def find_unit_vector(vector):
+    vector_magnitude = np.linalg.norm(vector)
+    unit_vector = (vector / vector_magnitude)
     return unit_vector
 
 
@@ -160,7 +191,6 @@ def is_forward_upward_vector(start, end):
         return direction_vector[0] > 0 and direction_vector[1] > 0
     else:
         return direction_vector[0] > 0 and direction_vector[1] > 0 and direction_vector[2] > 0
-
 
 
 def is_horizontal_vector(start, end):
